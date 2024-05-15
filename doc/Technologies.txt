@@ -1,0 +1,29 @@
+
+Graqler VSCode Plugin
+* TypeScript
+* NodeJS 22.1
+* Microsoft framework
+
+Graqler Studio
+* TypeScript
+* Svelte - MIT
+* Vite - MIT
+* ElectronJS - MIT
+* NodeJS - 
+
+Graqler-UI
+* TypeScript
+* NodeJS
+
+Graqler-LSP
+* TypeScript
+* Microsoft Framework: https://github.com/microsoft/vscode-languageserver-node
+
+Graqler-Core
+* TypeScript
+* Eta.js - MIT
+
+Graqler Compiler
+* TypeScript
+* oclif - MIT
+
