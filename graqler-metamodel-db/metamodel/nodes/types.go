@@ -1,4 +1,4 @@
-package metamodel
+package nodes
 
 type NodeType struct {
 	Name       string `json:"name"`
@@ -6,7 +6,5 @@ type NodeType struct {
 }
 
 type EdgeType struct {
-	Name string    `json:"name"`
-	From *NodeType `json:"from"`
-	To   *NodeType `json:"to"`
+	Name string `json:"name"`
 }

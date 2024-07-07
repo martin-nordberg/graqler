@@ -8,18 +8,18 @@ import (
 )
 
 func main() {
-	r := gin.Default()
+	router := gin.Default()
 
-	r.GET("/ping", func(c *gin.Context) {
+	router.GET("/ping", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
 			"message": "pong",
 		})
 	})
 
-	r.POST("/queries", metamodel.HandleRpc)
+	metamodel.AddRoutes(router)
 
 	// listen and serve on localhost:8080
-	err := r.Run(":8080")
+	err := router.Run(":8080")
 	if err != nil {
 		println("Abnormal exit: failed to start database listener.")
 		println(err)

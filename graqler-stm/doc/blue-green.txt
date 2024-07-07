@@ -1,0 +1,53 @@
+
+# PRINCIPLES
+
+* Read-only transactions never block, lock, abort, or retry.
+* The actual writing of read-write transactions is truly serialized
+  in a single goroutine.
+* Transactions are known to be read-only, read-write, write-only,
+  or bulk read-write before they begin.
+* Read-write transactions are single-threaded. Read-only transactions
+  can be multithreaded.
+
+# OBJECT HANDLES
+
+* Object handles have unique integer identifiers - "handle IDs".
+* Object handles reference two values, a blue value and a green value.
+* The majority of the time blue and green values are one and the same.
+  However, only one is "active" at a time.
+* While a transaction is being written, the old value is the blue value,
+  and the new value is the green value (or vice versa, alternating).
+* A global index switches between blue and green atomically (non-locking).
+* Switching this blue-green index is part of writing a transaction.
+
+
+# TRANSACTION READ CONTEXTS
+
+* A new shared transaction read context is created each time a transaction
+  is written.
+* The shared context is used by all read-only transactions created after
+  the context creation up until the creation of the next shared context.
+* Switching the active share transaction read context is accomplished with
+  the same global blue-green switch used for transaction writing.
+* A transaction read context starts out empty then over time accumulates
+  "to-be-read" value references that represent values in place prior to
+  writing a change.
+* The to-be-read values must be checked prior to reading a global object
+  handle value. The goal is to ensure that every read transaction sees
+  the values in place at the time it was started.
+* Object handles are always read with the help of a transaction read context.
+  The context looks for a to-be-read value and then retrieves the global
+  value only if there is no to-be-read value with the same handle ID.
+* Each transaction read context has its own goroutine. To-be-read values
+  are passed to this goroutine in a channel. When a batch of to-be-read
+  values is received, they are integrated with the current to-be-read
+  values in the fashion of persistent data structures.
+* When a to-be-read value is already present, a new value with the same
+  handle ID is ignored.
+* Once ready, an atomic switch is tripped so that subsequent object handle
+  reads use the new to-be-read map.
+* Object handle reads in progress are counted for old and new to-be-read maps
+  so that the transaction read context can signal (via an ack channel) that
+  all its associated transactions have switched to the new map.
+* A pending write is not blue-green switched until all prior transaction
+  read contexts have acknowledged the change.

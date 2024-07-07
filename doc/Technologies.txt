@@ -9,7 +9,7 @@ Graqler Studio
 * Svelte - MIT
 * Vite - MIT
 * ElectronJS - MIT
-* NodeJS - 
+* NodeJS
 
 Graqler-UI
 * TypeScript
@@ -21,9 +21,15 @@ Graqler-LSP
 
 Graqler-Core
 * TypeScript
+* NodeJS
 * Eta.js - MIT
 
 Graqler Compiler
 * TypeScript
+* NodeJS
 * oclif - MIT
 
+Graqler-Generated Database
+* TypeScript
+* NodeJS
+* Fastify
