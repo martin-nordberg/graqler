@@ -2,7 +2,7 @@
   import Versions from './components/Versions.svelte'
   import electronLogo from './assets/electron.svg'
 
-  const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
+  const ipcHandle = (): void => window.electron.ipcRenderer.send('ping', "you're it")
 </script>
 
 <img alt="logo" class="logo" src={electronLogo} />
@@ -13,7 +13,7 @@
   and
   <span class="ts">TypeScript</span>
 </div>
-<p class="tip">Please try pressing <code>F12</code> to open the devTool</p>
+<p class="tip">Please press <code>F12</code> to open the devTool</p>
 <div class="actions">
   <div class="action">
     <a href="https://electron-vite.org/" target="_blank" rel="noreferrer">Documentation</a>
