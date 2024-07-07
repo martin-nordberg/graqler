@@ -6,10 +6,11 @@ Graqler VSCode Plugin
 
 Graqler Studio
 * TypeScript
+* NodeJS
 * Svelte - MIT
 * Vite - MIT
 * ElectronJS - MIT
-* NodeJS
+* (See https://electron-vite.org/guide/)
 
 Graqler-UI
 * TypeScript
@@ -17,6 +18,7 @@ Graqler-UI
 
 Graqler-LSP
 * TypeScript
+* NodeJS
 * Microsoft Framework: https://github.com/microsoft/vscode-languageserver-node
 
 Graqler-Core
@@ -30,6 +32,6 @@ Graqler Compiler
 * oclif - MIT
 
 Graqler-Generated Database
-* TypeScript
+* JavaScript
 * NodeJS
 * Fastify
