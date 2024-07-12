@@ -3,9 +3,11 @@
   "include": [
     "electron.vite.config.*",
     "src/main/**/*",
-    "src/preload/**/*"
+    "src/preload/**/*",
+    "../graqler-core/src/**/*"
   ],
   "compilerOptions": {
+    "rootDir": "..",
     "composite": true,
     "types": [
       "electron-vite/node"

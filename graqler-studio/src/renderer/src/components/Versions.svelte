@@ -1,5 +1,5 @@
 <script lang="ts">
-  const versions = window.electron.process.versions
+  const versions = window.api.versions()
 </script>
 
 <ul class="versions">
